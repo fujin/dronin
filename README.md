@@ -1,5 +1,7 @@
 # dRonin'
 
+[![Join the chat at https://gitter.im/fujin/dronin](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fujin/dronin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 dRonin' is an autopilot/flight controller firmware for controllers in the OpenPilot/Tau Labs family.  It's aimed at a variety of use cases: acro/racing, autonomous flight, and vehicle research.
 
 dRonin' is production ready and released under the GPL. 
