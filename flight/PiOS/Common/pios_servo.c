@@ -213,6 +213,15 @@ void PIOS_Servo_SetMode(const uint16_t * speeds, const enum pwm_mode *pwm_mode, 
 			} else {
 				TIM_TimeBaseStructure.TIM_Prescaler = (PIOS_PERIPHERAL_APB1_CLOCK / clk_rate) - 1;
 			}
+#elif defined(STM32F446xx) /*  F446 */
+			if (chan->timer==TIM6 || chan->timer==TIM7) {
+          // These timers cannot be used here.
+          return;
+			} else if (chan->timer==TIM1 || chan->timer==TIM8 || chan->timer==TIM9 || chan->timer==TIM10 || chan->timer==TIM11 ) {
+          TIM_TimeBaseStructure.TIM_Prescaler = (PIOS_PERIPHERAL_APB2_CLOCK / clk_rate) - 1;
+			} else {
+          TIM_TimeBaseStructure.TIM_Prescaler = (PIOS_PERIPHERAL_APB1_CLOCK / clk_rate) - 1;
+			}
 #else
 #error Unsupported microcontroller
 #endif
