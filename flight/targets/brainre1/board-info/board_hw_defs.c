@@ -726,9 +726,37 @@ void PIOS_RTC_IRQ_Handler (void)
 
 #endif /* PIOS_INCLUDE_RTC */
 
+#if defined(PIOS_INCLUDE_SBUS)
+#include "pios_sbus_priv.h"
+#endif /* PIOS_INCLUDE_SBUS */
+
 #if defined(PIOS_INCLUDE_USART)
 
 #include "pios_usart_priv.h"
+
+static const struct pios_usart_cfg pios_rxport_cfg = {
+    .regs = USART3,
+    .remap = GPIO_AF_USART3,
+    .irq = {
+        .init = {
+            .NVIC_IRQChannel = USART3_IRQn,
+            .NVIC_IRQChannelPreemptionPriority = PIOS_IRQ_PRIO_MID,
+            .NVIC_IRQChannelSubPriority = 0,
+            .NVIC_IRQChannelCmd = ENABLE,
+        },
+    },
+    .rx = {
+        .gpio = GPIOC,
+        .init = {
+            .GPIO_Pin   = GPIO_Pin_5,
+            .GPIO_Speed = GPIO_Speed_2MHz,
+            .GPIO_Mode  = GPIO_Mode_AF,
+            .GPIO_OType = GPIO_OType_PP,
+            .GPIO_PuPd  = GPIO_PuPd_UP
+        },
+        .pin_source = GPIO_PinSource5,
+    },
+};
 
 static const struct pios_usart_cfg pios_usart1_cfg = {
 	.regs = USART1,

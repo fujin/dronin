@@ -430,8 +430,8 @@ void PIOS_Board_Init(void) {
 	HwBrainRE1RxPortGet(&hw_rxport);
 
 	PIOS_HAL_ConfigurePort(hw_rxport, // port type protocol
-                         NULL, // usart_port_cfg
-                         NULL, // com_driver
+                         &pios_rxport_cfg, // usart_port_cfg
+                         &pios_usart_com_driver, // com_driver
                          NULL, // i2c_id
                          NULL, // i2c_cfg
                          &pios_ppm_cfg, // ppm_cfg
