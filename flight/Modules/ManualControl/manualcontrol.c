@@ -195,8 +195,9 @@ static void manualControlTask(void *parameters)
 		}
 
 		// Wait until next update
-		PIOS_RCVR_WaitActivity(UPDATE_PERIOD_MS);
-		PIOS_WDG_UpdateFlag(PIOS_WDG_MANUAL);
+		if (PIOS_RCVR_WaitActivity(UPDATE_PERIOD_MS) != true) {
+				PIOS_WDG_UpdateFlag(PIOS_WDG_MANUAL);
+		}
 	}
 }
 
